@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 
-class Task extends Equatable{
+class Task extends Equatable {
   final String title;
   final int icon;
   final String color;
@@ -10,7 +10,7 @@ class Task extends Equatable{
       {required this.title,
       required this.icon,
       required this.color,
-       this.todo});
+      this.todo});
 
   Task copyWith({
     String? title,
@@ -33,12 +33,12 @@ class Task extends Equatable{
       );
 
   Map<String, dynamic> toJson() => {
-    'title': title,
-    'icon': icon,
-    'color': color,
-    'todo': todo,
-  };
-  
+        'title': title,
+        'icon': icon,
+        'color': color,
+        'todo': todo,
+      };
+
   @override
   List<Object?> get props => [title, icon, color];
 }

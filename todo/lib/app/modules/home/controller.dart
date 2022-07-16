@@ -9,7 +9,9 @@ class HomeController extends GetxController {
   final formKey = GlobalKey<FormState>();
   final editCtrl = TextEditingController();
   final chipIndex = 0.obs;
+  final deleting = false.obs;
   final tasks = <Task>[].obs;
+  final task = Rx<Task?>(null);
 
   @override
   void onInit() {
@@ -20,11 +22,20 @@ class HomeController extends GetxController {
 
   @override
   void onClose() {
+    editCtrl.dispose();
     super.onClose();
   }
 
   void changeChipIndex(int value) {
     chipIndex.value = value;
+  }
+
+  void changeDeleting(bool value) {
+    deleting.value = value;
+  }
+
+  void changeTask(Task? select) {
+    task.value = select;
   }
 
   bool addTask(Task task) {
@@ -33,5 +44,27 @@ class HomeController extends GetxController {
     }
     tasks.add(task);
     return true;
+  }
+
+  void deleteTask(Task task) {
+    tasks.remove(task);
+  }
+
+  updateTask(Task task, String title) {
+    var todos = task.todo ?? [];
+    if (containeTodo(todos, title)) {
+      return false;
+    }
+    var todo = {'title': title, 'done': false};
+    todos.add(todo);
+    var newTask = task.copyWith(todo: todos);
+    int oldTask = tasks.indexOf(task);
+    tasks[oldTask] = newTask;
+    tasks.refresh();
+    return true;
+  }
+
+  bool containeTodo(List todos, String title) {
+    return todos.any((element) => element['title'] == title);
   }
 }

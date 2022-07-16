@@ -50,7 +50,7 @@ class TaskCard extends StatelessWidget {
             ),
           ),
           Padding(
-            padding:  EdgeInsets.all(5.0.wp),
+            padding: EdgeInsets.all(5.0.wp),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -60,7 +60,9 @@ class TaskCard extends StatelessWidget {
                       TextStyle(fontWeight: FontWeight.bold, fontSize: 12.0.sp),
                   overflow: TextOverflow.ellipsis,
                 ),
-                SizedBox(height: 2.0.wp,),
+                SizedBox(
+                  height: 2.0.wp,
+                ),
                 Text(
                   '${task.todo?.length ?? 0} Task',
                   style: const TextStyle(
