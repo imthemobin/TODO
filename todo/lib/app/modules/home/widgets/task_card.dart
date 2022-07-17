@@ -43,7 +43,10 @@ class TaskCard extends StatelessWidget {
               selectedGradientColor: LinearGradient(
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
-                  colors: [color.withOpacity(0.5), color]),
+                  colors: [
+                    color.withOpacity(0.5),
+                    color,
+                  ]),
               unselectedGradientColor: const LinearGradient(
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,

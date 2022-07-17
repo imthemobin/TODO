@@ -22,7 +22,8 @@ class AddCard extends StatelessWidget {
       child: InkWell(
         onTap: (() async {
           Get.defaultDialog(
-              
+            // fix bug when kybord up Error
+              contentPadding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
               title: 'Task Type',
               titlePadding: EdgeInsets.symmetric(vertical: 5.0.wp),
               radius: 5,

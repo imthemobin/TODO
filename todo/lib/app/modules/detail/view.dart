@@ -3,6 +3,7 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 import 'package:todo/app/core/utils/extensions.dart';
+import 'package:todo/app/modules/detail/widgets/doing.dart';
 import 'package:todo/app/modules/home/controller.dart';
 
 class DetailPage extends StatelessWidget {
@@ -24,7 +25,9 @@ class DetailPage extends StatelessWidget {
                 IconButton(
                   onPressed: () {
                     Get.back();
+                    homeCtrl.updateTodos();
                     homeCtrl.changeTask(null);
+                    homeCtrl.editCtrl.clear();
                   },
                   icon: const Icon(
                     Icons.arrow_back,
@@ -103,7 +106,8 @@ class DetailPage extends StatelessWidget {
                   suffixIcon: IconButton(
                       onPressed: () {
                         if (homeCtrl.formKey.currentState!.validate()) {
-                          var success = homeCtrl.addTodo(homeCtrl.editCtrl.text);
+                          var success =
+                              homeCtrl.addTodo(homeCtrl.editCtrl.text);
                           if (success) {
                             EasyLoading.showSuccess('Todo item add success');
                           } else {
@@ -119,7 +123,8 @@ class DetailPage extends StatelessWidget {
                 }
               },
             ),
-          )
+          ),
+          DoingList()
         ]),
       ),
     );
