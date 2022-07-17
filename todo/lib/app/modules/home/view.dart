@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
-import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:todo/app/core/utils/extensions.dart';
 import 'package:todo/app/core/values/colors.dart';
 import 'package:todo/app/data/models/task.dart';
@@ -62,7 +61,11 @@ class Home extends GetView<HomeController> {
           () => FloatingActionButton(
             backgroundColor: controller.deleting.value ? Colors.red : blue,
             onPressed: () {
-              Get.to(() => AddDialog(), transition: Transition.downToUp);
+              if (controller.tasks.isNotEmpty) {
+                Get.to(() => AddDialog(), transition: Transition.downToUp);
+              } else {
+                EasyLoading.showInfo('Please create your task');
+              }
             },
             child: Icon(controller.deleting.value ? Icons.delete : Icons.add),
           ),
