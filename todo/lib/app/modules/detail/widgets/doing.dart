@@ -9,8 +9,9 @@ class DoingList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Obx(() {
-      return homeCtrl.doingTodos.isEmpty && homeCtrl.doneTodos.isEmpty
+    return Obx(
+      () =>
+       homeCtrl.doingTodos.isEmpty && homeCtrl.doneTodos.isEmpty
           ? Column(
               children: [
                 Image.asset(
@@ -43,7 +44,7 @@ class DoingList extends StatelessWidget {
                                         MaterialStateProperty.resolveWith(
                                             (states) => Colors.grey),
                                     value: element['done'],
-                                    onChanged: (value) {
+                                    onChanged: (_) {
                                       homeCtrl.doneTodo(element['title']);
                                     }),
                               ),
@@ -67,7 +68,7 @@ class DoingList extends StatelessWidget {
                     ),
                   )
               ],
-            );
-    });
+            ),
+    );
   }
 }

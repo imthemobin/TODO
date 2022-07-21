@@ -18,8 +18,9 @@ class TaskCard extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         homeCtrl.changeTask(task);
-        homeCtrl.changeTodo(task.todo ?? []);
+        homeCtrl.changeTodos(task.todo ?? []);
         Get.to(() => DetailPage());
+        homeCtrl.editCtrl.clear();
       },
       child: Container(
         width: squareWidth / 2,
@@ -34,10 +35,10 @@ class TaskCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // TODO change after CRUD todo
             StepProgressIndicator(
-              totalSteps: 100,
-              currentStep: 80,
+              totalSteps: homeCtrl.isTodosEmpty(task) ? 1 : task.todo!.length,
+              currentStep:
+                  homeCtrl.isTodosEmpty(task) ? 0 : homeCtrl.getDoneTodo(task),
               size: 5,
               padding: 0,
               selectedGradientColor: LinearGradient(
