@@ -24,7 +24,7 @@ class AddCard extends StatelessWidget {
           Get.defaultDialog(
             // fix bug when kybord up Error
               contentPadding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
-              title: 'Task Type',
+              title: 'Task Type'.tr,
               titlePadding: EdgeInsets.symmetric(vertical: 5.0.wp),
               radius: 5,
               content: Form(
@@ -35,11 +35,11 @@ class AddCard extends StatelessWidget {
                         padding: EdgeInsets.symmetric(horizontal: 3.0.wp),
                         child: TextFormField(
                           controller: homeCtrl.editCtrl,
-                          decoration: const InputDecoration(
-                              labelText: 'Title', border: OutlineInputBorder()),
+                          decoration: InputDecoration(
+                              labelText: 'Title'.tr, border: const OutlineInputBorder()),
                           validator: (value) {
                             if (value == null || value.trim().isEmpty) {
-                              return 'please enter yout task title';
+                              return 'please enter yout task title'.tr;
                             }
                             return null;
                           },
@@ -91,11 +91,11 @@ class AddCard extends StatelessWidget {
                               );
                               Get.back();
                               homeCtrl.addTask(task)
-                                  ? EasyLoading.showSuccess('Create sucess')
-                                  : EasyLoading.showError('Duplicated Task');
+                                  ? EasyLoading.showSuccess('Create sucess'.tr)
+                                  : EasyLoading.showError('Duplicated Task'.tr);
                             }
                           },
-                          child: const Text('confirm'))
+                          child: Text('confirm'.tr))
                     ],
                   )));
           homeCtrl.editCtrl.clear();

@@ -16,6 +16,7 @@ class HomeController extends GetxController {
   final task = Rx<Task?>(null);
   final doingTodos = <dynamic>[].obs;
   final doneTodos = <dynamic>[].obs;
+  final isLangEN = true.obs;
 
   @override
   void onInit() {

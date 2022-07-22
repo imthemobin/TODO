@@ -34,7 +34,7 @@ class AddDialog extends StatelessWidget {
                           onPressed: () {
                             if (homeCrtl.formKey.currentState!.validate()) {
                               if (homeCrtl.task.value == null) {
-                                EasyLoading.showError('Please select task type');
+                                EasyLoading.showError('Please select task type'.tr);
                               } else {
                                 var succes = homeCrtl.updateTask(
                                   homeCrtl.task.value!,
@@ -42,12 +42,12 @@ class AddDialog extends StatelessWidget {
                                 );
                                 if (succes) {
                                   EasyLoading.showSuccess(
-                                      'Todo iteam add success');
+                                      'Todo iteam add success'.tr);
                                   Get.back();
                                   homeCrtl.changeTask(null);
                                 } else {
                                   EasyLoading.showError(
-                                      'Todo iteam alrady exist');
+                                      'Todo iteam alrady exist'.tr);
                                 }
                                 homeCrtl.editCtrl.clear();
                               }
@@ -58,7 +58,7 @@ class AddDialog extends StatelessWidget {
                                 MaterialStateProperty.all(Colors.transparent),
                           ),
                           child: Text(
-                            'Done',
+                            'Done'.tr,
                             style: TextStyle(
                               fontSize: 14.0.sp,
                             ),
@@ -69,7 +69,7 @@ class AddDialog extends StatelessWidget {
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 5.0.wp),
                   child: Text(
-                    "New Task",
+                    'New Task'.tr,
                     style:
                         TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0.sp),
                   ),
@@ -85,7 +85,7 @@ class AddDialog extends StatelessWidget {
                     autofocus: true,
                     validator: (value) {
                       if (value == null || value.trim().isEmpty) {
-                        return 'Please enter your todo item';
+                        return 'Please enter your todo item'.tr;
                       }
                       return null;
                     },
@@ -99,7 +99,7 @@ class AddDialog extends StatelessWidget {
                     bottom: 2.0.wp,
                   ),
                   child: Text(
-                    'Add to: ',
+                    'Add to: '.tr,
                     style: TextStyle(
                       fontSize: 14.0.sp,
                       color: Colors.grey,

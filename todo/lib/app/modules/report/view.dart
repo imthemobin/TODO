@@ -25,7 +25,7 @@ class ReportPage extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.all(4.0.wp),
                 child: Text(
-                  'My Report',
+                  'My Report'.tr,
                   style:
                       TextStyle(fontSize: 22.0.sp, fontWeight: FontWeight.bold),
                 ),
@@ -48,9 +48,9 @@ class ReportPage extends StatelessWidget {
                 padding:  EdgeInsets.symmetric(vertical: 3.0.wp,horizontal: 5.0.wp),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [_buildStatus(Colors.green, liveTasks, 'Live Tasks'),
-                  _buildStatus(Colors.orange, completedTasks, 'Completed'),
-                  _buildStatus(Colors.blue, createdTasks, 'Created'),
+                  children: [_buildStatus(Colors.green, liveTasks, 'Live Tasks'.tr),
+                  _buildStatus(Colors.orange, completedTasks, 'Completed'.tr),
+                  _buildStatus(Colors.blue, createdTasks, 'Created'.tr),
                   ],
                 ),
               ),
@@ -78,7 +78,7 @@ class ReportPage extends StatelessWidget {
                           fontSize: 20.0.sp
                         ),),
                         SizedBox(height: 1.0.wp,),
-                        Text('Efficiency',style: TextStyle(
+                        Text('Efficiency'.tr,style: TextStyle(
                           fontSize: 12.0.sp,
                           fontWeight: FontWeight.bold,
                           color: Colors.grey

@@ -4,6 +4,7 @@ import 'package:todo/app/core/utils/extensions.dart';
 import 'package:todo/app/core/values/colors.dart';
 import 'package:todo/app/modules/home/controller.dart';
 
+
 class DoneList extends StatelessWidget {
   final homeCtrl = Get.find<HomeController>();
   DoneList({Key? key}) : super(key: key);
@@ -21,7 +22,7 @@ class DoneList extends StatelessWidget {
                   horizontal: 5.0.wp,
                 ),
                 child: Text(
-                  'Completed(${homeCtrl.doneTodos.length})',
+                  '${'Completed'.tr}(${homeCtrl.doneTodos.length})',
                   style: TextStyle(fontSize: 14.0.sp, color: Colors.grey),
                 ),
               ),

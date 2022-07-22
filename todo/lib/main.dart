@@ -5,6 +5,7 @@ import 'package:todo/app/data/services/storage/services.dart';
 import 'package:todo/app/modules/home/binding.dart';
 import 'package:todo/app/modules/home/view.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:todo/app/translations/localization_service.dart';
 
 void main() async {
   await GetStorage.init();
@@ -18,9 +19,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  GetMaterialApp(
+      translations: LocalizationService(),
+      locale: const Locale('en','Us'),
+      fallbackLocale: const Locale('en','Us'),
       debugShowCheckedModeBanner: false,
       title: 'TODO app',
-      home: const Home(),
+      home:  Home(),
       initialBinding: HomeBinding(),
       builder: EasyLoading.init(),
     );

@@ -67,7 +67,7 @@ class DetailPage extends StatelessWidget {
                 child: Row(
                   children: [
                     Text(
-                      '$totalTodos Tasks',
+                      '$totalTodos ${'Tasks'.tr}',
                       style: TextStyle(color: Colors.grey, fontSize: 12.0.sp),
                     ),
                     SizedBox(
@@ -112,9 +112,9 @@ class DetailPage extends StatelessWidget {
                             var success =
                                 homeCtrl.addTodo(homeCtrl.editCtrl.text);
                             if (success) {
-                              EasyLoading.showSuccess('Todo item add success');
+                              EasyLoading.showSuccess('Todo item add success'.tr);
                             } else {
-                              EasyLoading.showError('Todo item already exist');
+                              EasyLoading.showError('Todo item already exist'.tr);
                             }
                             homeCtrl.editCtrl.clear();
                           }
@@ -122,7 +122,7 @@ class DetailPage extends StatelessWidget {
                         icon: const Icon(Icons.check))),
                 validator: (value) {
                   if (value == null || value.trim().isEmpty) {
-                    return 'Please enter your todo item';
+                    return 'Please enter your todo item'.tr;
                   }
                 },
               ),
