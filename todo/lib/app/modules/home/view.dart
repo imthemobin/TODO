@@ -8,6 +8,7 @@ import 'package:todo/app/modules/home/controller.dart';
 import 'package:todo/app/modules/home/widgets/add_card.dart';
 import 'package:todo/app/modules/home/widgets/add_dialog.dart';
 import 'package:todo/app/modules/home/widgets/task_card.dart';
+import 'package:todo/app/modules/report/view.dart';
 
 class Home extends GetView<HomeController> {
   const Home({Key? key}) : super(key: key);
@@ -15,46 +16,52 @@ class Home extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: ListView(
-          children: [
-            Padding(
-              padding: EdgeInsets.all(4.0.wp),
-              child: Text(
-                "My List",
-                style:
-                    TextStyle(fontSize: 24.0.sp, fontWeight: FontWeight.bold),
-              ),
+      body: Obx(
+        () => IndexedStack(index: controller.tabIndex.value, children: [
+          SafeArea(
+            child: ListView(
+              children: [
+                Padding(
+                  padding: EdgeInsets.all(4.0.wp),
+                  child: Text(
+                    "My List",
+                    style: TextStyle(
+                        fontSize: 24.0.sp, fontWeight: FontWeight.bold),
+                  ),
+                ),
+                Obx(
+                  () => GridView.count(
+                    crossAxisCount: 2,
+                    shrinkWrap: true,
+                    physics: const ClampingScrollPhysics(),
+                    children: [
+                      ...controller.tasks
+                          .map(
+                            (element) => LongPressDraggable(
+                              data: element,
+                              onDragStarted: () =>
+                                  controller.changeDeleting(true),
+                              onDraggableCanceled: (velocity, offset) =>
+                                  controller.changeDeleting(false),
+                              onDragEnd: (details) =>
+                                  controller.changeDeleting(false),
+                              feedback: Opacity(
+                                opacity: 0.5,
+                                child: TaskCard(task: element),
+                              ),
+                              child: TaskCard(task: element),
+                            ),
+                          )
+                          .toList(),
+                      AddCard()
+                    ],
+                  ),
+                ),
+              ],
             ),
-            Obx(
-              () => GridView.count(
-                crossAxisCount: 2,
-                shrinkWrap: true,
-                physics: const ClampingScrollPhysics(),
-                children: [
-                  ...controller.tasks
-                      .map(
-                        (element) => LongPressDraggable(
-                          data: element,
-                          onDragStarted: () => controller.changeDeleting(true),
-                          onDraggableCanceled: (velocity, offset) =>
-                              controller.changeDeleting(false),
-                          onDragEnd: (details) =>
-                              controller.changeDeleting(false),
-                          feedback: Opacity(
-                            opacity: 0.5,
-                            child: TaskCard(task: element),
-                          ),
-                          child: TaskCard(task: element),
-                        ),
-                      )
-                      .toList(),
-                  AddCard()
-                ],
-              ),
-            ),
-          ],
-        ),
+          ),
+           ReportPage(),
+        ]),
       ),
       floatingActionButton: DragTarget<Task>(
         builder: (_, __, ___) => Obx(
@@ -74,6 +81,35 @@ class Home extends GetView<HomeController> {
           controller.deleteTask(task);
           EasyLoading.showSuccess('Deleting Succes');
         },
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      bottomNavigationBar: Theme(
+        data: ThemeData(
+          splashColor: Colors.transparent,
+          highlightColor: Colors.transparent
+        ),
+        child: Obx(
+          () => BottomNavigationBar(
+            onTap: (int index) => controller.changeTabIndex(index),
+            currentIndex: controller.tabIndex.value,
+            showSelectedLabels: false,
+            showUnselectedLabels: false,
+            items: [
+              BottomNavigationBarItem(
+                  label: 'Home',
+                  icon: Padding(
+                    padding: EdgeInsets.only(right: 15.0.wp),
+                    child: const Icon(Icons.apps),
+                  )),
+              BottomNavigationBarItem(
+                  label: 'Report',
+                  icon: Padding(
+                    padding: EdgeInsets.only(left: 15.0.wp),
+                    child: const Icon(Icons.data_usage),
+                  )),
+            ],
+          ),
+        ),
       ),
     );
   }

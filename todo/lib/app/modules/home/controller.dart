@@ -10,6 +10,7 @@ class HomeController extends GetxController {
   final formKey = GlobalKey<FormState>();
   final editCtrl = TextEditingController();
   final chipIndex = 0.obs;
+  final tabIndex = 0.obs;
   final deleting = false.obs;
   final tasks = <Task>[].obs;
   final task = Rx<Task?>(null);
@@ -31,6 +32,10 @@ class HomeController extends GetxController {
 
   void changeChipIndex(int value) {
     chipIndex.value = value;
+  }
+
+  void changeTabIndex(int index) {
+    tabIndex.value = index;
   }
 
   void changeDeleting(bool value) {
@@ -139,6 +144,30 @@ class HomeController extends GetxController {
     for (int i = 0; i < task.todo!.length; i++) {
       if (task.todo![i]['done'] == true) {
         res += 1;
+      }
+    }
+    return res;
+  }
+
+  int getTotalTask() {
+    var res = 0;
+    for (var i = 0; i < tasks.length; i++) {
+      if (tasks[i].todo != null) {
+        res += tasks[i].todo!.length;
+      }
+    }
+    return res;
+  }
+
+  int getTotalDoneTask() {
+    var res = 0;
+    for (var i = 0; i < tasks.length; i++) {
+      if (tasks[i].todo != null) {
+        for (var j = 0; j < tasks[i].todo!.length; j++) {
+          if (tasks[i].todo![j]['done'] == true) {
+            res += 1;
+          }
+        }
       }
     }
     return res;
