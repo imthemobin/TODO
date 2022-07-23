@@ -5,6 +5,7 @@ import 'package:step_progress_indicator/step_progress_indicator.dart';
 import 'package:todo/app/core/utils/extensions.dart';
 import 'package:todo/app/core/values/colors.dart';
 import 'package:todo/app/modules/home/controller.dart';
+import 'package:shamsi_date/shamsi_date.dart';
 
 class ReportPage extends StatelessWidget {
   final homeCtrl = Get.find<HomeController>();
@@ -12,6 +13,9 @@ class ReportPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var dateTime = DateFormat.yMMMMd().format(DateTime.now());
+    var dateTimeFa =
+        '${DateTime.now().toJalali().year}/${DateTime.now().toJalali().month}/${DateTime.now().toJalali().day}';
     return Scaffold(
       body: SafeArea(
         child: Obx(() {
@@ -22,7 +26,12 @@ class ReportPage extends StatelessWidget {
               (completedTasks / createdTasks * 100).toStringAsFixed(0);
           return ListView(
             children: [
-              Padding(
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Column(
+                    children: [
+                      Padding(
                 padding: EdgeInsets.all(4.0.wp),
                 child: Text(
                   'My Report'.tr,
@@ -33,9 +42,17 @@ class ReportPage extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 4.0.wp),
                 child: Text(
-                  DateFormat.yMMMMd().format(DateTime.now()),
+                  homeCtrl.isLangEN == true ? dateTime : dateTimeFa,
                   style: TextStyle(fontSize: 14.0.sp, color: Colors.grey),
                 ),
+              ),
+                    ],
+                  ),
+                  Padding(
+                    padding:  EdgeInsets.all(4.0.wp),
+                    child: Image.asset('assets/images/report.png',scale: 1.5,),
+                  )
+                ],
               ),
               Padding(
                 padding:
@@ -45,16 +62,20 @@ class ReportPage extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding:  EdgeInsets.symmetric(vertical: 3.0.wp,horizontal: 5.0.wp),
+                padding:
+                    EdgeInsets.symmetric(vertical: 3.0.wp, horizontal: 5.0.wp),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [_buildStatus(Colors.green, liveTasks, 'Live Tasks'.tr),
-                  _buildStatus(Colors.orange, completedTasks, 'Completed'.tr),
-                  _buildStatus(Colors.blue, createdTasks, 'Created'.tr),
+                  children: [
+                    _buildStatus(Colors.green, liveTasks, 'Live Tasks'.tr),
+                    _buildStatus(Colors.orange, completedTasks, 'Completed'.tr),
+                    _buildStatus(Colors.blue, createdTasks, 'Created'.tr),
                   ],
                 ),
               ),
-              SizedBox(height: 8.0.wp,),
+              SizedBox(
+                height: 8.0.wp,
+              ),
               UnconstrainedBox(
                 child: SizedBox(
                   height: 70.0.wp,
@@ -73,16 +94,21 @@ class ReportPage extends StatelessWidget {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text("${createdTasks == 0 ? 0 : percent} %",style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20.0.sp
-                        ),),
-                        SizedBox(height: 1.0.wp,),
-                        Text('Efficiency'.tr,style: TextStyle(
-                          fontSize: 12.0.sp,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.grey
-                        ),)
+                        Text(
+                          "${createdTasks == 0 ? 0 : percent} %",
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 20.0.sp),
+                        ),
+                        SizedBox(
+                          height: 1.0.wp,
+                        ),
+                        Text(
+                          'Efficiency'.tr,
+                          style: TextStyle(
+                              fontSize: 12.0.sp,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.grey),
+                        )
                       ],
                     ),
                   ),
