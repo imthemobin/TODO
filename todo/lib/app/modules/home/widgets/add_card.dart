@@ -102,6 +102,7 @@ class AddCard extends StatelessWidget {
           homeCtrl.changeChipIndex(0);
         }),
         child: DottedBorder(
+          strokeWidth: 1.2,
             color: Colors.grey[400]!,
             dashPattern: const [8, 4],
             child: Center(

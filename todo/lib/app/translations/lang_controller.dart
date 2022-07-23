@@ -6,4 +6,5 @@ class LangsController extends GetxController {
     var local = Locale(languageCode, countryCode);
     Get.updateLocale(local);
   }
+
 }

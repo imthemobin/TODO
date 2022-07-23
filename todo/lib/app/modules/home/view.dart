@@ -10,12 +10,12 @@ import 'package:todo/app/modules/home/widgets/add_dialog.dart';
 import 'package:todo/app/modules/home/widgets/task_card.dart';
 import 'package:todo/app/modules/report/view.dart';
 import 'package:todo/app/translations/lang_controller.dart';
+import 'package:simple_gradient_text/simple_gradient_text.dart';
 
 class Home extends GetView<HomeController> {
   Home({Key? key}) : super(key: key);
 
   final langsController = Get.put(LangsController());
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,10 +29,14 @@ class Home extends GetView<HomeController> {
                   children: [
                     Padding(
                       padding: EdgeInsets.all(4.0.wp),
-                      child: Text(
+                      child: GradientText(
                         'My List'.tr,
+                        colors: const[
+                          Color.fromARGB(255, 189, 195, 199),
+                          Color.fromARGB(255, 44, 62, 80)
+                        ],
                         style: TextStyle(
-                            fontSize: 24.0.sp, fontWeight: FontWeight.bold),
+                            fontSize: 24.0.sp, fontWeight: FontWeight.bold,),
                       ),
                     ),
                     Padding(
@@ -52,7 +56,10 @@ class Home extends GetView<HomeController> {
                                   borderRadius: BorderRadius.circular(3000)),
                               child: Text(
                                 'EN',
-                                style: TextStyle(color:controller.isLangEN.value == true? blue: Colors.grey[500]),
+                                style: TextStyle(
+                                    color: controller.isLangEN.value == true
+                                        ? blue
+                                        : Colors.grey[500]),
                               ),
                             ),
                           ),
@@ -70,7 +77,10 @@ class Home extends GetView<HomeController> {
                                     borderRadius: BorderRadius.circular(3000)),
                                 child: Text(
                                   'فا',
-                                  style: TextStyle(color: controller.isLangEN.value == false? blue: Colors.grey[500]),
+                                  style: TextStyle(
+                                      color: controller.isLangEN.value == false
+                                          ? blue
+                                          : Colors.grey[500]),
                                 )),
                           ),
                         ],
@@ -146,13 +156,17 @@ class Home extends GetView<HomeController> {
               BottomNavigationBarItem(
                   label: 'Home',
                   icon: Padding(
-                    padding: controller.isLangEN.value == true? EdgeInsets.only(right: 15.0.wp):EdgeInsets.only(left: 15.0.wp),
+                    padding: controller.isLangEN.value == true
+                        ? EdgeInsets.only(right: 15.0.wp)
+                        : EdgeInsets.only(left: 15.0.wp),
                     child: const Icon(Icons.apps),
                   )),
               BottomNavigationBarItem(
                   label: 'Report',
                   icon: Padding(
-                    padding:controller.isLangEN.value == true? EdgeInsets.only(left: 15.0.wp):EdgeInsets.only(right: 15.0.wp),
+                    padding: controller.isLangEN.value == true
+                        ? EdgeInsets.only(left: 15.0.wp)
+                        : EdgeInsets.only(right: 15.0.wp),
                     child: const Icon(Icons.data_usage),
                   )),
             ],

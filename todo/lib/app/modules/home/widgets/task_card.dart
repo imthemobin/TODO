@@ -26,10 +26,12 @@ class TaskCard extends StatelessWidget {
         width: squareWidth / 2,
         height: squareWidth / 2,
         margin: EdgeInsets.all(3.0.wp),
-        decoration: BoxDecoration(color: Colors.white, boxShadow: [
+        decoration: BoxDecoration(color: Colors.white,
+        borderRadius: BorderRadius.circular(10),
+         boxShadow: [
           BoxShadow(
-              color: Colors.grey[300]!,
-              blurRadius: 7,
+              color: Colors.grey[400]!,
+              blurRadius: 8,
               offset: const Offset(0, 7)),
         ]),
         child: Column(
@@ -75,7 +77,6 @@ class TaskCard extends StatelessWidget {
                     height: 2.0.wp,
                   ),
                   Text(
-                    // TODO
                     '${task.todo?.length ?? 0} ${'Task'.tr}',
                     style: const TextStyle(
                         fontWeight: FontWeight.bold, color: Colors.grey),

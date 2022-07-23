@@ -41,6 +41,7 @@ dependencies:
   dotted_border: ^2.0.0+2
   step_progress_indicator: ^1.0.2
   intl: ^0.17.0
+  simple_gradient_text: ^1.2.3
 
 dev_dependencies:
   flutter_test:
