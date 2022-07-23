@@ -3,9 +3,9 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:todo/app/data/services/storage/services.dart';
 import 'package:todo/app/modules/home/binding.dart';
-import 'package:todo/app/modules/home/view.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:todo/app/translations/localization_service.dart';
+import 'app/modules/splash_screen/splash_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
       fallbackLocale: const Locale('en', 'Us'),
       debugShowCheckedModeBanner: false,
       title: 'TODO app',
-      home: Home(),
+      home: SplashScreen(),
       initialBinding: HomeBinding(),
       builder: EasyLoading.init(),
     );

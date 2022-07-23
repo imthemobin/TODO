@@ -14,7 +14,6 @@ import 'package:simple_gradient_text/simple_gradient_text.dart';
 
 class Home extends GetView<HomeController> {
   Home({Key? key}) : super(key: key);
-
   final langsController = Get.put(LangsController());
   @override
   Widget build(BuildContext context) {
@@ -29,14 +28,19 @@ class Home extends GetView<HomeController> {
                   children: [
                     Padding(
                       padding: EdgeInsets.all(4.0.wp),
-                      child: GradientText(
-                        'My List'.tr,
-                        colors: const[
-                          Color.fromARGB(255, 189, 195, 199),
-                          Color.fromARGB(255, 44, 62, 80)
+                      child: Row(
+                        children: [
+                          GradientText(
+                            'My List'.tr,
+                            colors: const[
+                              Color.fromARGB(255, 189, 195, 199),
+                              Color.fromARGB(255, 44, 62, 80)
+                            ],
+                            style: TextStyle(
+                                fontSize: 22.0.sp, fontWeight: FontWeight.bold,),
+                          ),
+                          Image.asset('assets/images/task.gif',scale: 5,)
                         ],
-                        style: TextStyle(
-                            fontSize: 24.0.sp, fontWeight: FontWeight.bold,),
                       ),
                     ),
                     Padding(
