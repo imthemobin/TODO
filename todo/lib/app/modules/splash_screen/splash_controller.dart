@@ -6,6 +6,6 @@ class SplashController extends GetxController {
   void onReady() async {
     super.onReady();
     await Future.delayed(const Duration(seconds: 3));
-    Get.to(() => Home());
+    Get.off(() => Home());
   }
 }
